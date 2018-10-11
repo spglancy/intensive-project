@@ -1,0 +1,31 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Tapioka</title>
+        <link rel='stylesheet' type='text/css' href='/styles/styles.css' />
+    </head>
+    <body>
+        {{>nav}}
+        <div class="container">
+            <div class="friends">
+                <h2>Friends</h2>
+                <ul>
+                    <li><img src="/assets/testImage.jpg" /><span>friend friendicus</span></li>
+                </ul>
+            </div>
+            <div class="feed">
+                {{>post-form}}
+                {{#each posts}}
+                    {{>post}}
+                {{/each}}
+            </div>
+            <div class="topics">
+                <h2>Topics</h2>
+                <ul>
+                    <li>topic</li>
+                </ul>
+            </div>
+        </div>
+            <script src='/js/ddSwap.js'></script>
+    </body>
+</html>

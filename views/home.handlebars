@@ -10,19 +10,32 @@
             <div class="friends">
                 <h2>Friends</h2>
                 <ul>
-                    <li><img src="/assets/testImage.jpg" /><span>friend friendicus</span></li>
+                    <li><img src="/assets/testImage.jpg" /><span>placeholder</span></li>
                 </ul>
             </div>
             <div class="feed">
-                {{>post-form}}
-                {{#each posts}}
-                    {{>post}}
-                {{/each}}
+                <div class="poster">
+                    {{>post-form}}
+                </div>
+                <div class="posts">
+                    {{#each post}}
+                        <div class="post">
+                            <div class="postContent">
+                                <img src="/assets/testImage.jpg">
+                                <h2>User Name Here</h2>
+                                <p>{{this.content}}</p>
+                            </div>
+                            <p><a href="/posts/{{this._id}}/edit">Edit</a></p>
+                        </div>
+                        {{else}}
+                        <p>no content</p>
+                    {{/each}}
+                </div>
             </div>
             <div class="topics">
                 <h2>Topics</h2>
                 <ul>
-                    <li>topic</li>
+                    <li>placeholder</li>
                 </ul>
             </div>
         </div>

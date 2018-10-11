@@ -1,13 +1,9 @@
 <fieldset>
-    <div class="post">
-        <div class="postContent">
-            <h2>User Name Here</h2>
-            <!-- soon to be {{this.user}} -->
-            <textarea name="content">{{post.content}}</textarea>
+        <div class="post">
+            <div class="postContent">
+                <h2>User Name Here</h2>
+                <!-- soon to be {{this.user}} -->
+                <textarea name="content">{{post.content}}</textarea>
+            </div>
         </div>
-    </div>
 </fieldset>
-<a href='/'>Cancel</a>
-<p><form method="POST" action="/posts/{{post._id}}?_method=DELETE">
-    <button class="btn btn-primary" type="submit">Delete</button>
-</form></p>

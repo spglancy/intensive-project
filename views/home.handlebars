@@ -25,7 +25,9 @@
                                 <h2>User Name Here</h2>
                                 <p>{{this.content}}</p>
                             </div>
-                            <p><a href="/posts/{{this._id}}/edit">Edit</a></p>
+                            <form action="/posts/{{this.id}}/edit">
+                                <button href="/posts/{{this._id}}/edit">Edit</button>
+                            </form>
                         </div>
                         {{else}}
                         <p>no content</p>

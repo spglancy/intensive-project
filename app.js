@@ -4,6 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 var Post = require('./models/post.js');
 var exphbs = require('express-handlebars');
+var mongoose = require('mongoose');
+const port = process.env.PORT || 3000;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/contractor-project');
+
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -68,6 +72,4 @@ app.get('/posts', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!')
-})
+app.listen(port);

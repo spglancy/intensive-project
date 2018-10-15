@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Contractor</title>
-        <link rel='stylesheet' type='text/css' href='/styles/styles.css' />
-    </head>
-    <body>
+        {{>nav}}
         <div class="postEdit">
             <form method="POST" action="/posts/{{post._id}}?_method=PUT">
               {{> edit-form}}
@@ -14,9 +7,7 @@
             <form method="POST" action="/posts/{{post._id}}?_method=DELETE">
                 <button class="btn btn-primary" type="submit">Delete</button>
             </form>
-            <form action='/'>
+            <form action='/posts'>
                 <button href='/'>Cancel</button>
             </form>
         </div>
-    </body>
-</html>

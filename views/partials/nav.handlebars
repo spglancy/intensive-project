@@ -1,13 +1,13 @@
 <nav>
     <ul>
         <li><img class="logo" src="/assets/testImage.jpg"></li>
-        <li><a href=''>Home</a></li>
+        <li><a href='/posts'>Home</a></li>
         <li><a href=''>Trending</a></li>
         <li><a href=''>Notifications</a></li>
         <li><a href=''>Messages</a></li>
         <li><form action="submit"><input type="search"placeholder="Search"></input></form></li>
         <div onclick="ddSwap()" class="userSettings">
-            <li><a>User Name</a></li>
+            <li><a>{{User.name}}</a></li>
             <li>
                 <img class="avatar" src='/assets/testImage.jpg'>
                 <ul id="dropdownClosed">

@@ -2,11 +2,15 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const bodyParser = require('body-parser');
-var Post = require('./models/post.js');
-var exphbs = require('express-handlebars');
-var mongoose = require('mongoose');
+const postController = require('./controllers/postController.js');
+const saveNewUser = require('./controllers/registerController.js');
+const commentController = require('./controllers/commentController.js');
+const authController = require('./controllers/AuthController');
+const registerRoutes = require('./routes/registerRoutes.js');
+const exphbs = require('express-handlebars');
+const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/contractor-project');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://spglancy:qwaszx51@ds043987.mlab.com:43987/intensive', {useNewUrlParser: true });
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -14,62 +18,19 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+app.use('/', postController);
+app.use('/', commentController);
+// app.use('/', registerRoutes);
+app.use('/', authController);
 
-app.get('/',(req,res) => {
-    res.redirect('/posts')
-})
-
-app.get('/posts/:id/edit', (req, res) => {
-  Post.findById(req.params.id, function(err, post) {
-    res.render('post-edit', {post: post});
-  })
-})
-
-app.post('/posts', (req, res) => {
-    Post.create(req.body).then((post) => {
-        console.log(post)
-        res.redirect(`/posts/${post._id}`) // Redirect to post/:id
-    }).catch((err) => {
-        console.log(err.message)
-    })
-})
-
-app.put('/posts/:id', (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, req.body)
-    .then(post => {
-      res.redirect(`/posts/${post._id}`)
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
-})
-
-app.delete('/posts/:id', function(req, res) {
-    console.log("DELETE post")
-    Post.findByIdAndRemove(req.params.id).then((post) => {
-        res.redirect('/');
-    }).catch((err) => {
-        console.log(err.message);
-    })
-})
-
-app.get('/posts/:id', (req, res) => {
-  Post.findById(req.params.id).then((post) => {
-    res.render('singlepost', { post: post })
-  }).catch((err) => {
-    console.log(err.message);
-  })
-})
-
-app.get('/posts', (req, res) => {
-  Post.find().then(post => {
-      res.render('home', {
-            post: post
-        });
-    })
-    .catch((err) => {
-    console.log(err);
-    })
-})
+app.get('*', function (req, res) {
+	res.send({
+		message: 'This endpoint does not exist',
+		error: 404,
+	}, 404);
+});
+// saveNewUser(app);
 
 app.listen(port);
+
+module.exports = app;

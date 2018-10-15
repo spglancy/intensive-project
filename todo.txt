@@ -1,0 +1,9 @@
+look at geolocation possibility
+
+fix comments
+
+look at friend capability
+
+set up topics
+
+set up registration and auth

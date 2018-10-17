@@ -1,13 +1,17 @@
         {{>nav}}
         <div class="singlePost">
+            <div class="post">
             {{>post}}
             {{>commentAdd}}
-            {{#each comment}}
-                    {{>comments}}
-                    {{else}}
-                    <p></p>
-            {{/each}}
+            <div class="commentScroll">
+                {{#each comment}}
+                        {{>comments}}
+                        {{else}}
+                        <p>Nothing here yet...</p>
+                {{/each}}
+            </div>
             <form action="/posts">
                 <button>Home</button>
             </form>
+        </div>
         </div>

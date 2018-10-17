@@ -2,7 +2,12 @@ const Post = require('../models/post.js');
 const express = require('express');
 const postRoutes = express.Router();
 const User = require('../models/user.js');
-const Comment = require('../models/comment.js')
+const Comment = require('../models/comment.js');
+const authController = require('./authController.js')
+
+postRoutes.get('/', (req,res) => {
+    res.redirect('/api/auth/');
+})
 
 postRoutes.get('/posts/:id/edit', (req, res) => {
   Post.findById(req.params.id, function(err, post) {
@@ -31,7 +36,7 @@ postRoutes.put('/posts/:id', (req, res) => {
 
 postRoutes.delete('/posts/:id', function(req, res) {
     console.log("DELETE post")
-    Post.findByIdAndRemove(req.params.id).then((post) => {
+    Post.findByIdAndDelete(req.params.id).then((post) => {
         res.redirect('/posts');
     }).catch((err) => {
         console.log(err.message);
@@ -45,7 +50,8 @@ postRoutes.get('/posts/:id', (req, res) => {
       }).then(comment =>
     res.render('singlepost', {
         post: post,
-        comment: comment
+        comment: comment,
+        postId: req.params.id
     }))
  }).catch((err) => {
     console.log(err.message);
@@ -53,7 +59,7 @@ postRoutes.get('/posts/:id', (req, res) => {
 })
 
 postRoutes.get('/posts', (req, res) => {
-  Post.find().then(post => {
+  Post.find().then((post) => {
       res.render('home', {
             post: post,
             User: User

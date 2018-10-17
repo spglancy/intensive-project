@@ -3,8 +3,8 @@ mongoose.connect('mongodb://localhost/contractor-project', {useNewUrlParser: tru
 const Schema = mongoose.Schema;
 
 const comment = mongoose.model('comment', {
-  comment: String,
-  postId: { type: Schema.Types.ObjectId, ref: 'post' },
+  content: String,
+  postId: { type: String, required: true },
 });
 
 module.exports = comment;

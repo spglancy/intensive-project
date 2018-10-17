@@ -1,7 +1,8 @@
 <div class="comment">
-    <form method="POST" action="/posts/comments">
+    <form method="POST" action='/posts/comments/new'>
+        <input type="hidden" name="postId" value="{{postId}}" />
         <img src="/assets/testImage.jpg">
-        <textarea value="comment" placeholder="Leave A Comment" rows="2"></textarea>
+        <textarea value="content" name="content" placeholder="Leave A Comment" rows="2"></textarea>
         <button type="submit" name="comment">Comment</button>
     </form>
 </div>

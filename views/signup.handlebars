@@ -2,12 +2,12 @@
     <img src="/assets/testImage.jpg">
     <div class="signup">
         <h2>Join Today</h2>
-            <form action="/register" method="post">
+            <form action="/api/auth/register" method="post">
                 <input type="text" name="name" placeholder="Full Name" />
                 <input type="text" name="email" placeholder="Email" />
                 <input type="text" name="password" placeholder="Password" />
                 <button type="submit" name="register">Register</button>
-                <span>Already Have an Account? <a href="/login">Login</a></span>
+                <span>Already Have an Account? <a href="/api/auth/login">Login</a></span>
             </form>
     </div>
 </div>

@@ -6,7 +6,6 @@ const postController = require('./controllers/postController.js');
 const saveNewUser = require('./controllers/registerController.js');
 const commentController = require('./controllers/commentController.js');
 const authController = require('./controllers/AuthController');
-const registerRoutes = require('./routes/registerRoutes.js');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
@@ -20,8 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.use('/', postController);
 app.use('/', commentController);
-// app.use('/', registerRoutes);
-app.use('/', authController);
+app.use('/api/auth', authController);
 
 app.get('*', function (req, res) {
 	res.send({

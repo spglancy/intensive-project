@@ -5,6 +5,7 @@ const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
+const verifyToken = require('./verifyToken.js');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -23,13 +24,13 @@ router.post('/register', function(req, res) {
     name : req.body.name,
     email : req.body.email,
     password : hashedPassword
-  },
+},
   function (err, user) {
     if (err) return res.status(500).send("There was a problem registering the user.")
     // create a token
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
-    });
+  });
     res.status(200).redirect('/posts');
   });
 });
@@ -43,6 +44,7 @@ router.post('/login', function(req, res) {
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
     });
+    res.status(200).send({ auth: true, token: token });
     res.redirect('/posts');
   });
 });

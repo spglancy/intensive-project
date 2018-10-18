@@ -44,7 +44,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/', postController);
 app.use('/', commentController);
-app.use('/api/auth', authController);
+// app.use('/api/auth', authController);
 
 /**
  * 404 redirect

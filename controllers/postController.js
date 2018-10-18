@@ -7,12 +7,12 @@ const Comment = require('../models/comment.js');
 // const verifyToken = require('./verifyToken.js');
 
 postRoutes.get('/', (req, res) => {
-    res.redirect('/api/auth/');
+    res.redirect('/posts');
 })
 
-postRoutes.get('/login', (req, res) => {
-    res.redirect('/api/auth/login');
-})
+// postRoutes.get('/login', (req, res) => {
+//     res.redirect('/api/auth/login');
+// })
 
 postRoutes.get('/posts/:id/edit', (req, res) => {
     Post.findById(req.params.id, function (err, post) {

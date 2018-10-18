@@ -10,14 +10,13 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const config = require('./config.js')
 
-
-try {
-	mongoose.connect(process.env.MONGODB_URI || 'mongodb://spglancy:qwaszx51@ds043987.mlab.com:43987/intensive', { useNewUrlParser: true });
-}
-catch (err) {
-	console.log(err);
-}
-
+/**
+ * Connecting to the mongoDB
+ */
+	mongoose.connect( config.mongoURL, { useNewUrlParser: true })
+	.catch(err =>{
+		throw err;
+	})
 
 /**
  * Importing static files.

@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: [false, "The Password field is required"]
+        required: [true, "The Password field is required"]
     },
     bio: String,
     photo: String,

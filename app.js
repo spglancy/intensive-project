@@ -1,6 +1,6 @@
 const express = require('express');
-const methodOverride = require('method-override');
 const app = express();
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const postController = require('./controllers/postController.js');
 const saveNewUser = require('./controllers/registerController.js');
@@ -8,18 +8,48 @@ const commentController = require('./controllers/commentController.js');
 const authController = require('./controllers/AuthController');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const port = process.env.PORT || 3000;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://spglancy:qwaszx51@ds043987.mlab.com:43987/intensive', {useNewUrlParser: true });
+const config = require('./config.js')
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+
+try {
+	mongoose.connect(process.env.MONGODB_URI || 'mongodb://spglancy:qwaszx51@ds043987.mlab.com:43987/intensive', { useNewUrlParser: true });
+}
+catch (err) {
+	console.log(err);
+}
+
+
+/**
+ * Importing static files.
+ */
 app.use(express.static(__dirname + '/public'));
+
+/**
+ * Configuring bodyparser.
+ */
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(methodOverride('_method'))
+
+
+/**
+ * View engine.
+ */
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+/**
+ * Setting application routes
+ */
+
 app.use('/', postController);
 app.use('/', commentController);
 app.use('/api/auth', authController);
 
+/**
+ * 404 redirect
+ */
 app.get('*', function (req, res) {
 	res.send({
 		message: 'This endpoint does not exist',
@@ -28,6 +58,11 @@ app.get('*', function (req, res) {
 });
 // saveNewUser(app);
 
-app.listen(port);
+/**
+ * Starting application on configured port.
+ */
+app.listen(config.port, () => {
+	console.log(`Application is running on: ${config.port}`);
+});
 
 module.exports = app;

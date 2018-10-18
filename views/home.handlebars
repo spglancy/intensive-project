@@ -1,11 +1,11 @@
         {{>nav}}
         <div class="container">
-            <div class="friends">
+            <!-- <div class="friends">
                 <h2>Friends</h2>
                 <ul>
                     <li><img src="/assets/testImage.jpg" /><span>placeholder</span></li>
                 </ul>
-            </div>
+            </div> -->
             <div class="feed">
                 <div class="poster">
                     {{>post-form}}
@@ -15,7 +15,7 @@
                         <div class="post">
                             <div class="postContent">
                                 <img src="/assets/testImage.jpg">
-                                <h2>User Name Here</h2>
+                                <h2>{{this.user}}</h2>
                                 <p>{{this.content}}</p>
                             </div>
                             <div class="buttons">
@@ -32,11 +32,11 @@
                     {{/each}}
                 </div>
             </div>
-            <div class="topics">
+            <!-- <div class="topics">
                 <h2>Topics</h2>
                 <ul>
                     <li>placeholder</li>
                 </ul>
-            </div>
+            </div> -->
         </div>
             <script src='/js/ddSwap.js'></script>

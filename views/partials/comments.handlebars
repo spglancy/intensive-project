@@ -1,6 +1,7 @@
 <div class="comment">
             <p>{{this.content}}</p>
-    <form action="/posts/{{postId}}/comments/new?_method=DELETE" method="POST">
+    <form action="/posts/comments/{{this._id}}?_method=DELETE" method="POST">
+        <input type="hidden" value="{{postId}}" name="postId">
         <button type="submit" name="button">Delete</button>
     </form>
 </div>

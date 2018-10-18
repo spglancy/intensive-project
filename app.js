@@ -11,7 +11,6 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://spglancy:qwaszx51@ds043987.mlab.com:43987/intensive', {useNewUrlParser: true });
 
-
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));

@@ -3,10 +3,15 @@ const express = require('express');
 const postRoutes = express.Router();
 const User = require('../models/user.js');
 const Comment = require('../models/comment.js');
-const authController = require('./authController.js')
+// const authController = require('./authController.js');
+// const verifyToken = require('./verifyToken.js');
 
 postRoutes.get('/', (req,res) => {
     res.redirect('/api/auth/');
+})
+
+postRoutes.get('/login', (req,res) => {
+    res.redirect('/api/auth/login');
 })
 
 postRoutes.get('/posts/:id/edit', (req, res) => {
@@ -61,8 +66,7 @@ postRoutes.get('/posts/:id', (req, res) => {
 postRoutes.get('/posts', (req, res) => {
   Post.find().then((post) => {
       res.render('home', {
-            post: post,
-            User: User
+            post: post
         });
     })
     .catch((err) => {

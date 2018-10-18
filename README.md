@@ -4,5 +4,5 @@ The purpose of this product is to help people form local communities with common
 ### When starting development remember to
 	npm install
 
-#### [See the Live Version Here!](https://contractor-project-sg.herokuapp.com/)
+#### [See the Live Version Here!](https://intensive-project-sg.herokuapp.com/)
 ##### Disclaimer - not all features outlined here have been implemented, but will be implemented in the future

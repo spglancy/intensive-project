@@ -36,6 +36,11 @@ li a {
     padding: 18px 15px;
 }
 
+li > h1 {
+    color: white;
+    letter-spacing: 1px;
+}
+
 
 li > form > input {
     width: 175px;
@@ -382,4 +387,5 @@ button {
 
 .commentScroll {
     overflow-y: scroll;
+    width: 100%;
 }
